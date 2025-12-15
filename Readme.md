@@ -1,4 +1,4 @@
-# 🎵 Music Recommendation System   
+# 🎵 AI Music Recommender  
 
 A machine learning–based **Music Recommendation System** built using the **Spotify Dataset (57,000+ songs)**.  
 The project uses audio features like danceability, energy, loudness, tempo, and valence to recommend songs similar to a user-selected track.  
