@@ -19,10 +19,6 @@ models/
 *.npy
 *.h5
 
-# Data
-Data/
-*.csv
-
 # Environment variables
 .env
 .env.local
