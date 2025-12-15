@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+scikit-learn
+seaborn
+streamlit
+nltk==3.9.1
+spotipy==2.19.0
+requests
+python-dotenv
