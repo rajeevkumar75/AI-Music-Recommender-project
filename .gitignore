@@ -13,8 +13,6 @@ __pycache__/
 .streamlit/
 
 # Models & large files
-models/
-*.pkl
 *.joblib
 *.npy
 *.h5
