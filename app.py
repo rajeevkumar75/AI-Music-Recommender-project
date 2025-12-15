@@ -160,6 +160,11 @@ section.main .block-container {
 </style>
 """, unsafe_allow_html=True)
 
+
+#FOR STREAMIT SECRETE KEY:----
+CLIENT_ID = st.secrets["SPOTIFY_CLIENT_ID"]
+CLIENT_SECRET = st.secrets["SPOTIFY_CLIENT_SECRET"]
+
 #SPOTIFY CREDENTIALS:-------
 CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "YOUR_CLIENT_ID")
 CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "YOUR_CLIENT_SECRET")
