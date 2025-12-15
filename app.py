@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
 load_dotenv()
 
-#PAGE CONFIG
+#PAGE CONFIG:-
 st.set_page_config(
     page_title="AI Music Recommender 🎧",
     page_icon="🎵",
@@ -16,13 +16,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-#LOAD FONT AWESOME
+#LOAD FONT AWESOME:--
 st.markdown("""
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 """, unsafe_allow_html=True)
 
-# ----------------- GLOBAL STYLES -----------------
+#GLOBAL STYLES:-
 st.markdown("""
 <style>
 /* --- Song Card Styles --- */
@@ -160,7 +160,7 @@ section.main .block-container {
 </style>
 """, unsafe_allow_html=True)
 
-# ----------------- SPOTIFY CREDENTIALS -----------------
+#SPOTIFY CREDENTIALS:-------
 CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "YOUR_CLIENT_ID")
 CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "YOUR_CLIENT_SECRET")
 
@@ -209,7 +209,7 @@ if similarity is None:
     st.error("Model files not found or failed to load.")
     st.stop()
 
-# ----------------- GET SONG DETAILS -----------------
+#GET SONG DETAILS:--
 @st.cache_data()
 def get_song_details(song_name: str, artist_name: str) -> Optional[Dict[str, Any]]:
     try:
@@ -234,7 +234,7 @@ def get_song_details(song_name: str, artist_name: str) -> Optional[Dict[str, Any
     except:
         return None
 
-# ----------------- RECOMMENDATION FUNCTION -----------------
+#RECOMMENDATION FUNCTION:--
 def recommend(song: str, top_k: int = 15, hide_no_preview: bool = False,
               year_range: tuple = (1950, 2025), mood: str = "Any"):
 
@@ -274,7 +274,7 @@ def recommend(song: str, top_k: int = 15, hide_no_preview: bool = False,
 
     return names, details
 
-# ----------------- PAGE HEADER -----------------
+#PAGE HEADER:--
 st.markdown("""
 <h1 style='text-align:center; color:#00ffea;'>
     <i class='fa-brands fa-spotify'></i> AI Music Recommender
@@ -285,7 +285,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.markdown("---")
 
-# ----------------- SIDEBAR FILTERS -----------------
+#SIDEBAR FILTERS:---
 with st.sidebar:
     st.subheader("1. Filter Dataset")
 
@@ -345,7 +345,7 @@ with st.sidebar:
     st.markdown("---")
     generate_btn = st.button("Generate Recommendations 🎧")
 
-# ----------------- TABS -----------------
+#TABS :--------
 tab_recs, tab_about = st.tabs(["Recommendations", "About & Stats"])
 
 with tab_recs:
