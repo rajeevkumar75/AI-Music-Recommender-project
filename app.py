@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
 load_dotenv()
 
-# ----------------- PAGE CONFIG -----------------
+#PAGE CONFIG
 st.set_page_config(
     page_title="AI Music Recommender 🎧",
     page_icon="🎵",
@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ----------------- LOAD FONT AWESOME -----------------
+#LOAD FONT AWESOME
 st.markdown("""
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
