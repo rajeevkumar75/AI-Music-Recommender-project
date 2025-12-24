@@ -81,6 +81,7 @@ st.markdown("""
     margin-bottom: 6px;
     flex-wrap: wrap;
 }
+
 .song-tag {
     font-size: 11px;
     padding: 2px 8px;
