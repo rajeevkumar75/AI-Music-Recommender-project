@@ -25,7 +25,6 @@ st.markdown("""
 #GLOBAL STYLES:-
 st.markdown("""
 <style>
-/* --- Song Card Styles --- */
 .song-card {
     background: radial-gradient(circle at top left, #00ffc8 0, #111 45%);
     border-radius: 18px;
