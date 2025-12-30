@@ -57,6 +57,7 @@ st.markdown("""
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .song-artist {
     font-size: 13px;
     color: #b3b3b3;
