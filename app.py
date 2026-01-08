@@ -439,6 +439,7 @@ with tab_about:
     st.markdown("---")
     st.markdown("#### How it works")         
 
+
     st.write(
         "- The app uses a precomputed similarity matrix to instantly find songs most similar to the track you choose.\n"
         "- Live metadata, album art, audio previews, and links are fetched using the Spotify Web API.\n"
