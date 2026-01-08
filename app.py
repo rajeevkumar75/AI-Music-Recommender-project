@@ -240,6 +240,7 @@ def get_song_details(song_name: str, artist_name: str) -> Optional[Dict[str, Any
         }
     except:
         return None
+        
 
 #RECOMMENDATION FUNCTION:--
 def recommend(song: str, top_k: int = 15, hide_no_preview: bool = False,
