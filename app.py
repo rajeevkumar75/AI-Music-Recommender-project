@@ -79,20 +79,12 @@ a { color: inherit; text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- SPOTIFY ----------------
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
-# # For Streamlit Cloud secrets
-# import os
-# import streamlit as st
+# ----------------- SPOTIFY CREDENTIALS -----------------
+CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "YOUR_CLIENT_ID")
+CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "YOUR_CLIENT_SECRET")
 
-# CLIENT_ID = st.secrets.get("SPOTIFY_CLIENT_ID", os.getenv("SPOTIFY_CLIENT_ID"))
-# CLIENT_SECRET = st.secrets.get("SPOTIFY_CLIENT_SECRET", os.getenv("SPOTIFY_CLIENT_SECRET"))
-
-
-
-if not CLIENT_ID or not CLIENT_SECRET:
-    st.error("Spotify credentials not set")
+if CLIENT_ID in ("YOUR_CLIENT_ID", "", None) or CLIENT_SECRET in ("YOUR_CLIENT_SECRET", "", None):
+    st.error("Spotify credentials not set. Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET environment variables.")
     st.stop()
 
 sp = spotipy.Spotify(
