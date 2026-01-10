@@ -14,10 +14,6 @@ __pycache__/
 
 # Models & large files
 *.joblib
-*.npy
-*.h5
 
 # Environment variables
 .env
-.env.local
-.env.*.local  
