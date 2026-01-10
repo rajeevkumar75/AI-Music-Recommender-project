@@ -8,7 +8,7 @@ import pandas as pd
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 
-
+# ---------------- ENV ----------------
 load_dotenv()
 
 st.set_page_config(
@@ -18,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
+# ---------------- STYLES (UNCHANGED) ----------------
 st.markdown("""
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -79,9 +79,14 @@ a { color: inherit; text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
 
-#spotify credential:
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
+# ---------------- SPOTIFY ----------------
+# CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+# CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
+# For Streamlit Cloud secrets
+
+CLIENT_ID = st.secrets["SPOTIFY_CLIENT_ID"]
+CLIENT_SECRET = st.secrets["SPOTIFY_CLIENT_SECRET"]
+
 
 if not CLIENT_ID or not CLIENT_SECRET:
     st.error("Spotify credentials not set")
@@ -94,7 +99,7 @@ sp = spotipy.Spotify(
     )
 )
 
-#load models
+# ---------------- LOAD MODELS ----------------
 @st.cache_resource
 def load_models():
     with open("models/df.pkl", "rb") as f:
@@ -107,7 +112,7 @@ def load_models():
 
 music, faiss_index, embeddings = load_models()
 
-#spotify details
+# ---------------- SPOTIFY DETAILS ----------------
 @st.cache_data(show_spinner=False)
 def get_song_details(song, artist):
     try:
@@ -123,7 +128,7 @@ def get_song_details(song, artist):
     except:
         return None
 
-#recommendation
+# ---------------- RECOMMENDATION ----------------
 def recommend(song, top_k, hide_no_preview):
     idx_list = music[music["song"] == song].index
     if len(idx_list) == 0:
@@ -152,7 +157,7 @@ def recommend(song, top_k, hide_no_preview):
 
     return results
 
-#for header
+# ---------------- HEADER ----------------
 st.markdown("""
 <h1 style='text-align:center; color:#00ffea;'>
 <i class='fa-brands fa-spotify'></i> AI Music Recommender
@@ -164,15 +169,16 @@ FAISS-powered real-time music recommendations
 
 st.markdown("---")
 
-
+# ---------------- TABS ----------------
 tab_reco, tab_about = st.tabs(["🎧 Recommendations", "👨‍💻 About Me"])
 
-#for recommendation tab
+# ================= RECOMMENDATIONS TAB =================
 with tab_reco:
 
     with st.sidebar:
         st.markdown("### 🎵 Select Seed Song")
 
+        # Artist filter
         artists = sorted(music["artist"].dropna().unique().tolist())
         selected_artist = st.selectbox(
             "Filter by Artist",
@@ -189,6 +195,7 @@ with tab_reco:
             filtered_music["song"].sort_values().unique().tolist()
         )
 
+        # Show seed song image immediately
         if seed_song:
             seed_row = music[music["song"] == seed_song].iloc[0]
             seed_details = get_song_details(seed_song, seed_row.artist)
@@ -238,7 +245,7 @@ with tab_reco:
         st.info("Select a song and click Generate 🎧")
 
 
-#about tab
+# ================= ABOUT TAB =================
 with tab_about:
     st.subheader("👋 About This Project")
 
