@@ -8,7 +8,6 @@ import pandas as pd
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 
-# ---------------- ENV ----------------
 load_dotenv()
 
 st.set_page_config(
@@ -18,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------------- STYLES (UNCHANGED) ----------------
+
 st.markdown("""
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -79,7 +78,7 @@ a { color: inherit; text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- SPOTIFY ----------------
+# Spotify credential:-
 # CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 # CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 # For Streamlit Cloud secrets
@@ -99,7 +98,7 @@ sp = spotipy.Spotify(
     )
 )
 
-# ---------------- LOAD MODELS ----------------
+#load model:-
 @st.cache_resource
 def load_models():
     with open("models/df.pkl", "rb") as f:
@@ -112,7 +111,7 @@ def load_models():
 
 music, faiss_index, embeddings = load_models()
 
-# ---------------- SPOTIFY DETAILS ----------------
+#spotify detail:-
 @st.cache_data(show_spinner=False)
 def get_song_details(song, artist):
     try:
@@ -128,7 +127,7 @@ def get_song_details(song, artist):
     except:
         return None
 
-# ---------------- RECOMMENDATION ----------------
+#for recommendation
 def recommend(song, top_k, hide_no_preview):
     idx_list = music[music["song"] == song].index
     if len(idx_list) == 0:
@@ -157,7 +156,7 @@ def recommend(song, top_k, hide_no_preview):
 
     return results
 
-# ---------------- HEADER ----------------
+#for header:-
 st.markdown("""
 <h1 style='text-align:center; color:#00ffea;'>
 <i class='fa-brands fa-spotify'></i> AI Music Recommender
@@ -169,16 +168,16 @@ FAISS-powered real-time music recommendations
 
 st.markdown("---")
 
-# ---------------- TABS ----------------
+#for tab:-
 tab_reco, tab_about = st.tabs(["🎧 Recommendations", "👨‍💻 About Me"])
 
-# ================= RECOMMENDATIONS TAB =================
+#for recommendation tab:-
 with tab_reco:
 
     with st.sidebar:
         st.markdown("### 🎵 Select Seed Song")
 
-        # Artist filter
+        #for artist search
         artists = sorted(music["artist"].dropna().unique().tolist())
         selected_artist = st.selectbox(
             "Filter by Artist",
@@ -195,7 +194,7 @@ with tab_reco:
             filtered_music["song"].sort_values().unique().tolist()
         )
 
-        # Show seed song image immediately
+        #show seed song
         if seed_song:
             seed_row = music[music["song"] == seed_song].iloc[0]
             seed_details = get_song_details(seed_song, seed_row.artist)
@@ -245,21 +244,20 @@ with tab_reco:
         st.info("Select a song and click Generate 🎧")
 
 
-# ================= ABOUT TAB =================
+#About section
 with tab_about:
     st.subheader("👋 About This Project")
 
     st.markdown("""
-This is a **scalable AI music recommendation system** built using **embedding-based similarity search**.
+This project is a **scalable AI-powered music recommendation system** designed to deliver fast and relevant song suggestions using **embedding-based similarity search**.
 
-- Replaced a **1.6 GB cosine similarity matrix** with **vector embeddings + FAISS** for fast and memory-efficient recommendations  
-- Implemented **real-time music retrieval** using the **Spotify Web API** (album art, previews, metadata)  
-- Designed a **low-latency, modular pipeline** suitable for **free cloud deployment**  
-- Built an **interactive Streamlit interface** for real-time user interaction  
-                
+- Replaced a **1.6 GB cosine similarity matrix** with **text embeddings + FAISS**, enabling **fast and memory-efficient recommendations** over **15,000+ songs**  
+- Integrated the **Spotify Web API** for **real-time music retrieval**, including album artwork, previews, and song metadata  
+- Designed a **low-latency, modular ML pipeline** optimized for **free-tier cloud deployment**  
+- Built an **interactive Streamlit interface** for seamless, real-time user interaction  
 
-
-> Focused on **performance, scalability, and real-world ML system design**.
+> This project emphasizes **performance optimization, scalability, and real-world ML system design**.
 """)
+
 
 
