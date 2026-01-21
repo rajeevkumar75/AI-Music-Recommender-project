@@ -9,4 +9,3 @@ spotipy==2.19.0
 requests
 python-dotenv
 faiss-cpu
-huggingface_hub
