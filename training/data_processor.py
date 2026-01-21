@@ -34,6 +34,7 @@ class DataProcessor:
             DataFrame with data
         """
         df = pd.read_csv(csv_path)
+        df = df.sample(15000)
         
         # Remove unnecessary columns
         if 'link' in df.columns:

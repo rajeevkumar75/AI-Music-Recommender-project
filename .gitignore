@@ -1,7 +1,7 @@
 # Virtual environments
 venv/
 env/
-.venv/
+
 venv1/
 
 # Python cache
@@ -9,7 +9,7 @@ __pycache__/
 *.pyc
 
 # Streamlit
-.cache/
+.cache
 .streamlit/
 
 # Models & large files
@@ -17,5 +17,3 @@ __pycache__/
 
 # Environment variables
 .env
-models/ 
-models/ 

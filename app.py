@@ -8,6 +8,7 @@ import pandas as pd
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 from datetime import datetime
+from huggingface_hub import hf_hub_download
 
 # ---------------- ENV ----------------
 load_dotenv()
@@ -121,6 +122,7 @@ sp = spotipy.Spotify(
 )
 
 # ---------------- LOAD MODELS ----------------
+
 @st.cache_resource
 def load_models():
     with open("models/df.pkl", "rb") as f:
