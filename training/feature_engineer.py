@@ -57,7 +57,6 @@ class FeatureEngineer:
         X_tfidf = self.create_tfidf_vectors(texts)
         # Reduce dimensions
         embeddings = self.reduce_dimensions(X_tfidf)
-        # Normalize for cosine similarity
         faiss.normalize_L2(embeddings)
         
         return embeddings
