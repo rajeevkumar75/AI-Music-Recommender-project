@@ -79,12 +79,12 @@ a { color: inherit; text-decoration: none; }
 """, unsafe_allow_html=True)
 
 # Spotify credential:-
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
-# For Streamlit Cloud secrets
+# CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+# CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 
-# CLIENT_ID = st.secrets["SPOTIFY_CLIENT_ID"]
-# CLIENT_SECRET = st.secrets["SPOTIFY_CLIENT_SECRET"]
+# For Streamlit Cloud secrets
+CLIENT_ID = st.secrets["SPOTIFY_CLIENT_ID"]
+CLIENT_SECRET = st.secrets["SPOTIFY_CLIENT_SECRET"]
 
 
 if not CLIENT_ID or not CLIENT_SECRET:
