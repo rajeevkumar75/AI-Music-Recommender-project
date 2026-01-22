@@ -1,3 +1,0 @@
-models/*.pkl filter=lfs diff=lfs merge=lfs -text
-models/*.npy filter=lfs diff=lfs merge=lfs -text
-models/*.index filter=lfs diff=lfs merge=lfs -text
