@@ -244,20 +244,31 @@ with tab_reco:
         st.info("Select a song and click Generate 🎧")
 
 
-#About section
+# ABOUT TAB
 with tab_about:
-    st.subheader("👋 About This Project")
-
-    st.markdown("""
-This project is a **scalable AI-powered music recommendation system** designed to deliver fast and relevant song suggestions using **embedding-based similarity search**.
-
-- Replaced a **1.6 GB cosine similarity matrix** with **text embeddings + FAISS**, enabling **fast and memory-efficient recommendations** over **15,000+ songs**  
-- Integrated the **Spotify Web API** for **real-time music retrieval**, including album artwork, previews, and song metadata  
-- Designed a **low-latency, modular ML pipeline** optimized for **free-tier cloud deployment**  
-- Built an **interactive Streamlit interface** for seamless, real-time user interaction  
-
-> This project emphasizes **performance optimization, scalability, and real-world ML system design**.
+    st.subheader("🎵 AI Music Recommender")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+### ✨ Features
+- ⚡ FAISS-powered instant search
+- 🎧 Spotify integration (artwork & previews)
+- 📊 Compare recommendations
+- 📥 Export playlists (TXT/CSV)
+- 🎵 High-quality music embeddings
 """)
-
+    
+    with col2:
+        st.markdown("""
+### 📊 Dataset & Tech
+- 57,000+ songs indexed
+- Multiple audio features
+- FAISS Vector Search
+- Spotify Web API
+- Streamlit Frontend
+""")
+    
+    st.markdown("---")
 
 
