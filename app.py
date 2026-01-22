@@ -159,8 +159,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Spotify Setup
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "")
+CLIENT_ID = st.secrets["SPOTIFY_CLIENT_ID"]
+CLIENT_SECRET = st.secrets["SPOTIFY_CLIENT_SECRET"]
 if not CLIENT_ID or not CLIENT_SECRET:
     st.error("⚠️ Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET environment variables")
     st.stop()
