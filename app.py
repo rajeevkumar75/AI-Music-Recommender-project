@@ -158,11 +158,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Spotify Setup
-CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "")
-CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "")
-if not CLIENT_ID or not CLIENT_SECRET:
-    st.error("⚠️ Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET environment variables")
+# ----------------- SPOTIFY CREDENTIALS -----------------
+CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "YOUR_CLIENT_ID")
+CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "YOUR_CLIENT_SECRET")
+
+if CLIENT_ID in ("YOUR_CLIENT_ID", "", None) or CLIENT_SECRET in ("YOUR_CLIENT_SECRET", "", None):
+    st.error("⚠️ Spotify credentials not set. Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET environment variables.")
     st.stop()
 
 sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
@@ -208,18 +209,23 @@ def get_song_details(song, artist):
         return None
 
 def format_duration(ms):
-    return f"{ms // 60000}:{(ms % 60000) // 1000:02d}"
+    minutes = ms // 60000
+    seconds = (ms % 60000) // 1000
+    return f"{minutes}:{seconds:02d}"
 
-def recommend(song, top_k, hide_no_preview, filters=None):
-    """
-    Recommend similar songs with optional advanced filtering
-    
-    Args:
-        song: Seed song name
-        top_k: Number of recommendations
-        hide_no_preview: Filter out songs without preview
-        filters: Dict with filter criteria (genre, year_range, duration_range, popularity_range)
-    """
+# ---------- GET DATASET STATS ----------
+@st.cache_data
+def get_dataset_stats():
+    stats = {
+        "total_songs": len(music),
+        "unique_artists": music["artist"].nunique(),
+        "unique_genres": music["genre"].nunique() if "genre" in music.columns else 0,
+        "columns": len(music.columns)
+    }
+    return stats
+
+# ---------- RECOMMENDATION ----------
+def recommend(song, top_k, hide_no_preview):
     idx_list = music[music["song"] == song].index
     if len(idx_list) == 0:
         return []
@@ -227,9 +233,9 @@ def recommend(song, top_k, hide_no_preview, filters=None):
     idx = idx_list[0]
     query = embeddings[idx].reshape(1, -1)
     faiss.normalize_L2(query)
-    
-    _, indices = faiss_index.search(query, min(top_k * 3 + 10, len(embeddings)))
-    
+
+    _, indices = faiss_index.search(query, top_k + 1)
+
     results = []
     for i in indices[0]:
         if i == idx:
