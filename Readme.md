@@ -2,7 +2,7 @@
 
 A **production-grade music recommendation system** using semantic embeddings, FAISS vector search, and Spotify API integration. Built with Streamlit for real-time, interactive recommendations.
 
-**Live Demo:** [AI Music Recommender](https://ai-music-recommender-project-euayjb3otqkvvxrcytjyrb.streamlit.app/)
+**Live Demo:** [AI Music Recommender](https://rajeevkumar75-ai-music-recommender-project-app-igjksx.streamlit.app/)
 
 ---
 
