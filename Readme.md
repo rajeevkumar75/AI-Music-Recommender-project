@@ -44,11 +44,6 @@ Find similar songs instantly based on a seed track. The system analyzes song met
 - **Real-time feedback** - Loading spinners, success/error messages
 - **Font Awesome icons** - Spotify-branded buttons and visual elements
 
-### 💾 Export Features
-- **TXT format** - Human-readable playlists with full metadata
-- **CSV format** - Spreadsheet-compatible for further analysis
-- **Metadata included** - Songs, artists, albums, durations, Spotify links
-
 ---
 
 ## 🛠 Technical Architecture
