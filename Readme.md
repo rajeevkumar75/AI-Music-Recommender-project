@@ -14,7 +14,6 @@ Find similar songs instantly based on a seed track. The system analyzes song met
 1. Select a song (e.g., "Shape of You" by Ed Sheeran)
 2. Click "Recommend" 
 3. Get 5-25 similar songs with Spotify metadata and audio previews
-4. Download as playlist (TXT/CSV) or stream directly
 
 ---
 
@@ -384,15 +383,6 @@ streamlit run app.py
 3. Set environment variables in secrets
 4. Deploy
 
-### Docker Deployment
-```dockerfile
-FROM python:3.10-slim
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
-CMD ["streamlit", "run", "app.py"]
-```
-
 ---
 
 ## 📈 Performance Metrics
@@ -412,26 +402,6 @@ CMD ["streamlit", "run", "app.py"]
 - Qualitative evaluation shows relevant recommendations
 - Songs share genres, artists, tempo, mood
 - User feedback indicates satisfaction
-
----
-
-## 🎨 UI Features
-
-### Color Scheme
-- **Primary:** Cyan (#00ffc8) - Spotify-inspired
-- **Accent:** Teal (#0d2828) - Depth
-- **Background:** Dark (#1a1a1a) - Reduces eye strain
-
-### Animations
-- **Card hover** - Lift effect (translateY -8px)
-- **Image hover** - Scale zoom (1.05x)
-- **Button hover** - Color invert + scale
-- **Shimmer effect** - Subtle gradient animation
-
-### Responsive Design
-- **Desktop:** 4-column grid for recommendations
-- **Tablet:** 2-column grid
-- **Mobile:** 1-column stacked layout
 
 ---
 
@@ -480,31 +450,9 @@ CMD ["streamlit", "run", "app.py"]
 
 ---
 
-## 🤝 Contributing
-
-Contributions welcome! Areas for improvement:
-
-- [ ] Add collaborative filtering (user preferences)
-- [ ] Implement mood/energy-based recommendations
-- [ ] Add playlist generation with constraints
-- [ ] Build mobile app with React Native
-- [ ] Add user authentication and history
-- [ ] Implement A/B testing framework
-
----
-
 ## 📝 License
 
 This project is open source and available under the MIT License.
-
----
-
-## 🙏 Acknowledgments
-
-- **Spotify** - Data source and API access
-- **Meta/Facebook** - FAISS library
-- **Streamlit** - Web framework
-- **Open source community** - scikit-learn, NLTK, NumPy, Pandas
 
 ---
 
@@ -514,47 +462,6 @@ For questions or issues:
 1. Check [GitHub Issues](https://github.com/rajeevkumar75/AI-Music-Recommender-project/issues)
 2. Review the [Streamlit docs](https://docs.streamlit.io/)
 3. Visit [FAISS documentation](https://faiss.ai/)
-
----
-
-## 🎯 What This Demonstrates
-
-**For Recruiters & Interviewers:**
-
-✨ **ML System Design**
-- End-to-end pipeline from raw data to production
-- Feature engineering and dimensionality reduction
-- Vector search indexing at scale
-
-⚡ **Full-Stack Development**
-- ML backend (Python, scikit-learn, FAISS)
-- Web frontend (Streamlit, custom CSS)
-- API integration (Spotify Web API)
-- Deployment and optimization
-
-🔍 **Problem Solving**
-- Identified scalability bottleneck (O(n²) matrices)
-- Designed efficient solution (FAISS)
-- Balanced accuracy vs. performance
-- Optimized for resource constraints
-
-🎨 **Product Thinking**
-- User-centric design with animations
-- Export functionality for value delivery
-- Mobile-responsive interface
-- Error handling and edge cases
-
----
-
-## 📊 Stats
-
-- **Lines of Code:** 500+ (app.py) + 200+ (training)
-- **Training Time:** <5 minutes
-- **Search Latency:** <5ms
-- **Memory Footprint:** <500MB
-- **Dataset Size:** 57,000 songs
-- **Embedding Dimension:** 256D
-- **Live Users:** Accessible to public
 
 ---
 
