@@ -233,7 +233,7 @@ with tab_reco:
 
 with tab_about:
     st.markdown("""
-    ### How This work:-
+    ### How AI Music Recommender work:-
     This recommendation engine uses **High-Dimensional Embeddings** to understand the "soul" of a song. Unlike simple genre filters, it analyzes audio features to find tracks with similar moods, tempos, and textures.
     
     - **Search Engine:** FAISS (Facebook AI Similarity Search)
@@ -241,5 +241,4 @@ with tab_about:
     - **Scale:** Real-time retrieval across 15,000+ tracks
     """)
 
-    st.markdown("---")
-    st.info(" © 20260 Rajeev Kumar. All rights reserved. ", icon="⚖️")
+    st.info(" © 2026 Rajeev Kumar. All rights reserved. ", icon="⚖️")
